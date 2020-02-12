@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+[[ "$DEBUG" = "true" ]] && set -x
+set -euo pipefail
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+project_dir="$( cd "$script_dir/.." && pwd )"
+cmd_name="$( basename "$0" )"
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: ${cmd_name} problem/PROBLEM.hs" >&2
+  exit 1
+fi
+
+target="$project_dir/$1"
+
+exec gcc -E -P -w -xc -traditional "$target"

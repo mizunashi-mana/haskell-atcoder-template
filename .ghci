@@ -1,0 +1,11 @@
+:set -XBlockArguments
+:set -XFlexibleContexts
+:set -XLambdaCase
+:set -XMultiWayIf
+:set -XOverloadedLists
+:set -XOverloadedStrings
+:set -XScopedTypeVariables
+:set -XStrict
+:set -XTypeApplications
+
+:set -Wno-type-defaults
