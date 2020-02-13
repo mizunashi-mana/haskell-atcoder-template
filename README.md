@@ -9,10 +9,9 @@ AtCoder の新環境用のテンプレです
 1.  テンプレからプロジェクト作る
 
     ```bash
-    git clone https://github.com/mizunashi-mana/haskell-atcoder-template.git
-    cp -r haskell-atcoder-template "$(date "+atcoder-%Y%m%d")"
+    git clone https://github.com/mizunashi-mana/haskell-atcoder-template.git "$(date "+atcoder-%Y%m%d")"
     cd "$(date "+atcoder-%Y%m%d")"
-    git init .
+    git remote rm origin
     ```
 
 2.  問題用の `main` 作る
