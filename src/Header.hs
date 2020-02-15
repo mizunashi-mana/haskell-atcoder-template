@@ -1,6 +1,7 @@
 -- Copyright (c) 2020 Mizunashi Mana
--- Released under the MIT license
--- https://github.com/mizunashi-mana/haskell-atcoder-template/blob/master/LICENSE
+--
+-- Released under
+-- https://github.com/mizunashi-mana/haskell-atcoder-template/blob/master/MIT-LICENSE.txt
 
 {-# LANGUAGE BangPatterns        #-}
 {-# LANGUAGE BlockArguments      #-}
