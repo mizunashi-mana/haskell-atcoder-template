@@ -29,6 +29,8 @@ import           Data.Function
 import           Data.Functor
 import           Data.Monoid
 import           Data.MonoTraversable              hiding (omapM, oforM)
+import qualified Data.Text                         as Text
+import qualified Data.Text.IO                      as Text
 import qualified Data.Vector.Generic               as Vec
 import qualified Data.Vector.Generic.Mutable       as MVec
 import qualified Data.Vector.Algorithms.Intro      as MVec
@@ -39,7 +41,7 @@ import qualified Data.Vector.Fusion.Bundle.Monadic as VecBundle
 import qualified Data.Vector.Fusion.Bundle.Size    as VecBundle
 import qualified Debug.Trace                       as Debug
 import           GHC.Exts                          as GHC
-import           Prelude                           hiding (foldl, foldr, head, tail, String)
+import           Prelude                           hiding (foldl, foldr, head, tail)
 import qualified Prelude
 import qualified System.IO                         as IO
 
@@ -144,8 +146,8 @@ putFlush = IO.hFlush IO.stdout
 
 -- Utilities
 
-countElem :: Eq a => a -> [a] -> Int
-countElem x ys = foldl' (\acc y -> acc + if x == y then 1 else 0) 0 ys
+ocount :: MonoFoldable mono => (Element mono -> Bool) -> mono -> Int
+ocount f ys = ofoldl' (\acc y -> acc + if f y then 1 else 0) 0 ys
 
 flipOrdering :: Ordering -> Ordering
 flipOrdering GT = LT
@@ -160,3 +162,8 @@ altconcat xs = coerce $ mconcat @(Alt f a) $ coerce xs
 
 succN :: Enum a => a -> Int -> a
 succN x n = toEnum $ fromEnum x + n
+
+withFilter :: forall f. Alternative f => Bool -> f ()
+withFilter = \case
+  True  -> pure ()
+  False -> empty
